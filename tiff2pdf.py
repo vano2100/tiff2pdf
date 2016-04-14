@@ -1,6 +1,7 @@
 from reportlab.pdfgen import canvas
 import reportlab
 import PIL
+import sys
 
 
 def convert(tiff, out = "out.pdf"):
@@ -17,4 +18,9 @@ def convert(tiff, out = "out.pdf"):
 
 
 if __name__ == "__main__":
-    convert("scan.tif", "scan.pdf")
+    if len(sys.argv) == 3:
+        convert(sys.argv[1], sys.argv[2])
+    elif len(sys.argv) == 2:
+        convert(sys.argv[1])
+    else:
+        print("Usage: tiff2pdf.py in.tiff out.pdf")
